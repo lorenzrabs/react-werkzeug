@@ -1,6 +1,6 @@
 {
   "name": "react-werkzeug",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Collection of components",
   "main": "dist/bundle.js",
   "scripts": {
