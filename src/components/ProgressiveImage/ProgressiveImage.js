@@ -93,11 +93,11 @@ const ProgressiveImage = forwardRef(({ placeholderSrc, src, alt = "", width = "a
     }, [src, imgSrc, placeholderSrc]);
 
     return (
-        <div className={`progressive-image ${className}`} style={{ ...mergedStyles.wrapper, aspectRatio: width + "/" + height }} ref={ref} {...restProps}>
+        <div className={`progressive-image ${className}`} role="img" style={{ ...mergedStyles.wrapper, aspectRatio: width + "/" + height }} ref={ref} {...restProps}>
 
             {imgSrc ? (
                 // If the image source is available, display the image with loading or loaded styles
-                <img ref={imgRef} className={`progressive-image__img ${imgClassName}`} imgClassName src={imgSrc} alt={alt} style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }} loading={loading} width={width} height={height} />
+                <img ref={imgRef} className={`progressive-image__img ${imgClassName}`} src={imgSrc} alt={alt} style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }} loading={loading} width={width} height={height} />
             ) : (
                 // If the image source is not available, display the default placeholder image
                 <img ref={imgRef} src={defaultPlaceholder} alt={alt} className={`progressive-image__img ${imgClassName}`} style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }} loading={loading} width={width} height={height} />
