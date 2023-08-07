@@ -3,9 +3,9 @@
   "version": "1.0.9",
   "description": "Collection of components",
   "main": "dist/bundle.js",
+  "types": "dist/bundle.d.ts",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "test": "jest"
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [
     "progressive-image"
