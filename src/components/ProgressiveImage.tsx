@@ -61,7 +61,8 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
                     textAlign: 'center' as React.CSSProperties['textAlign'],
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#f9f9f9'
+                    backgroundColor: '#f9f9f9',
+                    mixBlendMode: 'multiply' as React.CSSProperties['mixBlendMode']
                 }
             }),
             []
@@ -78,6 +79,7 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
         useEffect(() => {
             if (!src) {
                 setIsError(true);
+                setIsLoading(false);
                 return;
             }
 
@@ -95,26 +97,28 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
                 };
                 img.onerror = () => {
                     setIsError(true);
+                    setIsLoading(false);
                 };
             }
         }, [src, imgSrc]);
 
         return (
             <div className={`progressive-image ${className}`} role="img" style={{ ...mergedStyles.wrapper, aspectRatio: `${width}/${height}` }} ref={ref} {...props}>
-                <img
-                    ref={imgRef}
-                    className={`progressive-image__img ${imgClassName}`}
-                    src={imgSrc}
-                    alt={alt}
-                    style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }}
-                    loading={loading}
-                    width={width}
-                    height={height}
-                />
-
+                {imgSrc && (
+                    <img
+                        ref={imgRef}
+                        className={`progressive-image__img ${imgClassName}`}
+                        src={imgSrc}
+                        alt={alt}
+                        style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }}
+                        loading={loading}
+                        width={width}
+                        height={height}
+                    />
+                )}
                 {isError && (
                     <div className="progressive-image__error-message" style={mergedStyles.error}>
-                        <pre>Image failed to load.</pre>
+                        <pre>{imgSrc ? 'final image failed to load.' : 'image and placeholder failed to load.'} </pre>
                     </div>
                 )}
             </div>
