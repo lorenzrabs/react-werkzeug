@@ -5,7 +5,7 @@
         "url": "https://github.com/lorenzrabs/react-werkzeug"
     },
     "homepage": "https://github.com/lorenzrabs/react-werkzeug",
-    "version": "1.0.13",
+    "version": "1.0.14",
     "description": "Collection of components",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
