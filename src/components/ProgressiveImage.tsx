@@ -25,7 +25,7 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
     ({ placeholderSrc, src, alt = '', width = 'auto', height = 'auto', className = '', imgClassName = '', loading = 'lazy', styles = {}, ...props }, ref: Ref<HTMLDivElement>) => {
         const imgRef = useRef<HTMLImageElement | null>(null);
 
-        const [imgSrc, setImgSrc] = useState<string | null>(() => placeholderSrc || defaultPlaceholder);
+        const [imgSrc, setImgSrc] = useState<string>(() => placeholderSrc || defaultPlaceholder);
         const [isLoading, setIsLoading] = useState<boolean>(true);
         const [isError, setIsError] = useState<boolean>(false);
 
