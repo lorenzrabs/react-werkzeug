@@ -145,6 +145,11 @@ transition can lead to unexpected behavior.
 
 One possible workaround is to use the `!important` declaration to override the existing transition.
 
+## Changelog for Version 1.0.12
+
+-   If the placeholderSrc is not defined, the defaultPlaceholder will be used instead. Only if the final src cannot be found, the error message will be displayed on top of the placeholderSrc or the
+    defaultPlaceholder.
+
 ## Changelog for Version 1.0.10-beta
 
 -   Converted the project to TypeScript

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, forwardRef, useMemo, Ref } from 're
 
 export interface IProgressiveImage extends React.HTMLProps<HTMLDivElement> {
     placeholderSrc?: string;
-    src: string;
+    src?: string;
     alt?: string;
     width?: string | number;
     height?: string | number;
@@ -25,7 +25,7 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
     ({ placeholderSrc, src, alt = '', width = 'auto', height = 'auto', className = '', imgClassName = '', loading = 'lazy', styles = {}, ...props }, ref: Ref<HTMLDivElement>) => {
         const imgRef = useRef<HTMLImageElement | null>(null);
 
-        const [imgSrc, setImgSrc] = useState<string | null>(() => placeholderSrc ?? null);
+        const [imgSrc, setImgSrc] = useState<string | null>(() => placeholderSrc || defaultPlaceholder);
         const [isLoading, setIsLoading] = useState<boolean>(true);
         const [isError, setIsError] = useState<boolean>(false);
 
@@ -76,7 +76,7 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
         );
 
         useEffect(() => {
-            if (!src && !placeholderSrc) {
+            if (!src) {
                 setIsError(true);
                 return;
             }
@@ -97,33 +97,20 @@ export const ProgressiveImage = forwardRef<HTMLDivElement, IProgressiveImage>(
                     setIsError(true);
                 };
             }
-        }, [src, imgSrc, placeholderSrc]);
+        }, [src, imgSrc]);
 
         return (
             <div className={`progressive-image ${className}`} role="img" style={{ ...mergedStyles.wrapper, aspectRatio: `${width}/${height}` }} ref={ref} {...props}>
-                {imgSrc ? (
-                    <img
-                        ref={imgRef}
-                        className={`progressive-image__img ${imgClassName}`}
-                        src={imgSrc}
-                        alt={alt}
-                        style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }}
-                        loading={loading}
-                        width={width}
-                        height={height}
-                    />
-                ) : (
-                    <img
-                        ref={imgRef}
-                        src={defaultPlaceholder}
-                        alt={alt}
-                        className={`progressive-image__img ${imgClassName}`}
-                        style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }}
-                        loading={loading}
-                        width={width}
-                        height={height}
-                    />
-                )}
+                <img
+                    ref={imgRef}
+                    className={`progressive-image__img ${imgClassName}`}
+                    src={imgSrc}
+                    alt={alt}
+                    style={isLoading ? { ...mergedStyles.loading, ...mergedStyles.img } : { ...mergedStyles.loaded, ...mergedStyles.img }}
+                    loading={loading}
+                    width={width}
+                    height={height}
+                />
 
                 {isError && (
                     <div className="progressive-image__error-message" style={mergedStyles.error}>
