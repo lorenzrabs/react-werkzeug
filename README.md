@@ -56,6 +56,7 @@ The `ProgressiveImage` component accepts the following props:
 -   `width`: (Optional) The width of the image in pixels or any valid CSS width value. Default is `"auto"`.
 -   `height`: (Optional) The height of the image in pixels or any valid CSS height value. Default is `"auto"`.
 -   `className`: (Optional) Additional CSS class name(s) to be applied to the container div.
+-   `loading`: (Optional) Sets the loading prop of the img. Default is `"lazy"`.
 -   `imgClassName`: (Optional) Additional CSS class name(s) to be applied to the img element.
 -   `...restProps`: (Optional) Any other props you want to pass to the underlying `div` element.
 
@@ -108,6 +109,7 @@ defaultStyles: {
     width: "100%",
     height: "100%",
     backgroundColor: "#f9f9f9",
+    mixBlendMode: "multiply",
   }
 }
 ```
