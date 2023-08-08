@@ -12,7 +12,7 @@
         "noUnusedLocals": true,
         "rootDir": "./src",
         "outDir": "dist/esm",
-        "sourceMap": true,
+        "sourceMap": false,
         "strict": true,
         "target": "es6",
         "noUnusedParameters": true,

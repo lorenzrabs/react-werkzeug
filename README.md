@@ -145,7 +145,7 @@ transition can lead to unexpected behavior.
 
 One possible workaround is to use the `!important` declaration to override the existing transition.
 
-## Changelog for Version 1.0.9-beta
+## Changelog for Version 1.0.10-beta
 
 -   Converted the project to TypeScript
 
